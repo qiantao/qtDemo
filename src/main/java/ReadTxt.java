@@ -1,7 +1,5 @@
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
 import demo.Demo;
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -33,7 +31,7 @@ public class ReadTxt {
             Map<String,String> map1 = new HashMap<>();
             boolean flag = true;
             while ((s = bReader.readLine()) != null) {//逐行读取文件内容，不读取换行符和末尾的空格
-                if(StringUtils.isBlank(s)){
+                if(StringUtils.isEmpty(s)){
                     continue;
                 }
                 if(flag && s.contains("---")){
