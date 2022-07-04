@@ -4,22 +4,7 @@
         <h3module>xmarket</h3module>
         <tableNames>
             <table>
-                <tableName>t_component_data</tableName>
-            </table>
-            <table>
-                <tableName>t_component_data_filter</tableName>
-            </table>
-            <table>
-                <tableName>t_component_data_stack</tableName>
-            </table>
-            <table>
-                <tableName>t_component_json</tableName>
-            </table>
-            <table>
-                <tableName>t_market_vars</tableName>
-            </table>
-            <table>
-                <tableName>t_component_vars_rela</tableName>
+                <tableName>t_report_err</tableName>
             </table>
 
         </tableNames>
