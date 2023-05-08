@@ -1,0 +1,7 @@
+/**
+ * @Author MuYang
+ * @Date 2022/9/21 14:26
+ * @version: V1.0
+ */
+@Data
+public class :enTaoPageResult {

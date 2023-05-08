@@ -1,6 +1,7 @@
 package com.qt.demo;
 
 import com.qt.util.TableColumn;
+import com.sun.istack.internal.NotNull;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -25,30 +26,31 @@ public class Demo {
     private final static int CPOINT=6;
     private static String sql="";
 
+//
+//    public static void main(String[] args) {
+//
+////        String tempFilePath="D:/aaaa/pos.xlsx";//源文件路径
+//        String tempFilePath="D:/aaaa/ware.xlsx";//源文件路径
+////        String tempFilePath="D:/aaaa/goods.xlsx";//源文件路径
+//        String targetFilePath = "D:/aaaa/ware";//目标文件夹
+////        String targetFilePath = "D:/svncode/h3/h3svn/trunk/h3-ware/h3-ware-center/src/main/java/com/hydee/h3/ware/cpware";//目标文件夹
+//
+////        int index = 0;
+////        createStarted(tempFilePath,targetFilePath,index);
+//
+//        int totleCount = 10;
+//        for (int i = 0; i < totleCount ; i++) {
+//            try {
+//                createStarted(tempFilePath,targetFilePath,i);
+//            }catch (Exception e){
+//                System.out.println("执行表下标 "+i+" 不存在，结束");
+//                break;
+//            }
+//        }
+//        String serviceImplStr= targetFilePath + "/sql/ware.sql";
+//        StringToFile(serviceImplStr,sql);
+//    }
 
-    public static void main(String[] args) {
-
-//        String tempFilePath="D:/aaaa/pos.xlsx";//源文件路径
-        String tempFilePath="D:/aaaa/ware.xlsx";//源文件路径
-//        String tempFilePath="D:/aaaa/goods.xlsx";//源文件路径
-        String targetFilePath = "D:/aaaa/ware";//目标文件夹
-//        String targetFilePath = "D:/svncode/h3/h3svn/trunk/h3-ware/h3-ware-center/src/main/java/com/hydee/h3/ware/cpware";//目标文件夹
-
-//        int index = 0;
-//        createStarted(tempFilePath,targetFilePath,index);
-
-        int totleCount = 10;
-        for (int i = 0; i < totleCount ; i++) {
-            try {
-                createStarted(tempFilePath,targetFilePath,i);
-            }catch (Exception e){
-                System.out.println("执行表下标 "+i+" 不存在，结束");
-                break;
-            }
-        }
-        String serviceImplStr= targetFilePath + "/sql/ware.sql";
-        StringToFile(serviceImplStr,sql);
-    }
     public static void createStarted(String tempFilePath,String targetFilePath,int index){
 //    }
 //    public static void main(String[] args) {
@@ -188,7 +190,28 @@ public class Demo {
     }
 
 
-    public static void StringToFile(String targetFilePath,String str){
+    public static void main(String[] args) {
+        //1.
+        //2.调用一个方法
+
+//        String str1 = "文件路径";
+//        String str2 = "需要写入的内容";
+////        Demo demo = new Demo();
+//        Demo.StringToFile(str1,str2);
+//
+        int a = 5;
+        int b = 6;
+        int add = add(a, b);
+        int c = add - 10;
+        System.out.println(c);
+
+    }
+
+    public static int add(int a ,int b ){
+        return a+b;
+    }
+    public static boolean StringToFile(String targetFilePath, String str){
+
        FileOutputStream out=null;
        BufferedReader bReader=null;
        FileReader reader =null;
@@ -212,6 +235,7 @@ public class Demo {
            out.write(str.getBytes());
        }catch(Exception e){
            e.printStackTrace();
+           return false;
        }finally{
            try {
                out.close();
@@ -221,6 +245,7 @@ public class Demo {
                e.printStackTrace();
            }
        }
+       return true;
    }
 
     public static String getValue(Cell hssfCell) {

@@ -4,7 +4,7 @@
         <h3module>xmarket</h3module>
         <tableNames>
             <table>
-                <tableName>t_report_err</tableName>
+                <tableName>t_out_sys_info</tableName>
             </table>
 
         </tableNames>

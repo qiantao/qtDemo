@@ -14,7 +14,7 @@ public class MybatisDemo {
 
     public static void main(String[] args) throws Exception{
         String targetFilePath = "/Users/qiantao/Desktop/git/qt/github/qtdemo/";//目标文件夹
-        String dbshcame = "mdl";
+        String dbshcame = "perfma_xportal";
         Operate.doOperate(targetFilePath,dbshcame);
 
     }
