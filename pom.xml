@@ -134,6 +134,13 @@
             <!--            <version>5.1.26</version>-->
             <version>8.0.27</version>
         </dependency>
+<!--        &lt;!&ndash;  poi-word工具类&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.poi</groupId>-->
+<!--            <artifactId>poi-ooxml</artifactId>-->
+<!--            <version>4.1.2</version>-->
+<!--        </dependency>-->
+
     </dependencies>
 
     <build>

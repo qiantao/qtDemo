@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <my>
     <sourceEntity>
-        <h3module>xmarket</h3module>
+        <h3module>xark</h3module>
         <tableNames>
             <table>
-                <tableName>t_out_sys_info</tableName>
+                <tableName>t_third_filter</tableName>
             </table>
-
         </tableNames>
     </sourceEntity>
 </my>

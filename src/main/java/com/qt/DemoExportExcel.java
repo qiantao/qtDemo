@@ -24,16 +24,17 @@ public class DemoExportExcel {
 
     public static void main(String[] args) {
         String filePath = "/Users/qiantao/Desktop/aaa.xlsx";
-        exportDBToExcel(filePath);
+        String dbSchema = "tocean";
+        exportDBToExcel(filePath,dbSchema);
     }
 
-    private static void exportDBToExcel(String filePath){
+    private static void exportDBToExcel(String filePath,String dbSchema){
         XSSFWorkbook wb = new XSSFWorkbook();
         FileOutputStream out = null;
         try {
             out = new FileOutputStream(filePath);
 
-            List<ExportDBEntity> exportDBEntities = H3Dao.queryAllColumn();
+            List<ExportDBEntity> exportDBEntities = H3Dao.queryAllColumn(dbSchema);
             Map<String,String> tableMap = new HashMap<>();
             exportDBEntities.forEach(e->{
                 tableMap.put(e.getTableName(),e.getTableComment());

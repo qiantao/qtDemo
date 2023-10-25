@@ -107,4 +107,6 @@ public class TableColumn {
     public void setPromoKey(String promoKey) {
         this.promoKey = promoKey;
     }
+
+
 }

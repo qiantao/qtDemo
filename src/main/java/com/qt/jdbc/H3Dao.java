@@ -1,5 +1,6 @@
 package com.qt.jdbc;
 
+import com.google.common.collect.Lists;
 import com.qt.ExportDBEntity;
 import com.qt.util.StringUtil;
 
@@ -147,7 +148,9 @@ public class H3Dao extends MsqlDBConnection{
         return map;
     }
 
-    public static List<ExportDBEntity> queryAllColumn(){
+//    private static List<String> s = Lists.newArrayList("file_store");
+    public static List<ExportDBEntity> queryAllColumn(String dbSchema){
+
         List<ExportDBEntity> map = new ArrayList<>();
         PreparedStatement pstmt =null;
         ResultSet rs =null;
@@ -160,7 +163,8 @@ public class H3Dao extends MsqlDBConnection{
 //                            "left join information_schema.KEY_COLUMN_USAGE C \n" +
 //                            "ON A.TABLE_NAME = C.TABLE_NAME and A.COLUMN_NAME = C.COLUMN_NAME AND C.CONSTRAINT_NAME='PRIMARY' \n " +
 //                            "WHERE A.TABLE_NAME = '"+tableName+"' ) C order by C.TABLE_NAME ";
-            String sql = "SELECT\n" +
+            String sql = "\n" +
+                    "SELECT\n" +
                     "\t* \n" +
                     "FROM\n" +
                     "\t(\n" +
@@ -176,19 +180,16 @@ public class H3Dao extends MsqlDBConnection{
                     "\t\tA.NUMERIC_PRECISION,\n" +
                     "\t\tA.NUMERIC_SCALE,\n" +
                     "\t\tA.DATETIME_PRECISION,\n" +
-                    "\t\tA.COLUMN_COMMENT,\n" +
-                    "\t\tC.CONSTRAINT_NAME,\n" +
-                    "\t\tC.COLUMN_NAME KEYCOLUMN \n" +
+                    "\t\tA.COLUMN_COMMENT\n" +
                     "\tFROM\n" +
                     "\t\tinformation_schema.`COLUMNS` A\n" +
-                    "\t\tLEFT JOIN information_schema.`TABLES` B ON A.TABLE_NAME = B.TABLE_NAME and B.table_schema = 'mdl'\n" +
-                    "\t\tLEFT JOIN information_schema.KEY_COLUMN_USAGE C ON A.TABLE_NAME = C.TABLE_NAME \n" +
-                    "\t\tAND A.COLUMN_NAME = C.COLUMN_NAME \n" +
-                    "\t\tAND C.CONSTRAINT_NAME = 'PRIMARY' \n" +
+                    "\t\tLEFT JOIN information_schema.`TABLES` B ON A.TABLE_NAME = B.TABLE_NAME \n" +
+                    "\t\twhere A.table_schema = '"+dbSchema+"' and B.TABLE_SCHEMA='"+dbSchema+"' \n" +
                     "\t) C \n" +
                     "where C.TABLE_SCHEMA is not null\n" +
                     "ORDER BY\n" +
-                    "\tC.TABLE_NAME";
+                    "\tC.TABLE_NAME\n" +
+                    "\t";
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
 
@@ -196,6 +197,9 @@ public class H3Dao extends MsqlDBConnection{
                 ExportDBEntity exportDBEntity = new ExportDBEntity();
                 exportDBEntity.setTableComment(rs.getString("TABLE_COMMENT")==null?"":rs.getString("TABLE_COMMENT"));
                 exportDBEntity.setTableName(rs.getString("TABLE_NAME")==null?"":rs.getString("TABLE_NAME"));
+//                if(!s.contains(exportDBEntity.getTableName())){
+//                    continue;
+//                }
                 exportDBEntity.setColumnName(rs.getString("COLUMN_NAME"));
                 exportDBEntity.setIsNullable(rs.getString("IS_NULLABLE")==null?"":rs.getString("IS_NULLABLE"));
                 exportDBEntity.setColumnDefault(rs.getString("COLUMN_DEFAULT")==null?"":rs.getString("COLUMN_DEFAULT"));
