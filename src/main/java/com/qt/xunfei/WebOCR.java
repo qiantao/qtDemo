@@ -1,5 +1,6 @@
 package com.qt.xunfei;
 
+import com.google.gson.JsonObject;
 import com.qt.xunfei.util.FileUtil;
 import com.qt.xunfei.util.HttpUtil;
 import org.apache.commons.codec.binary.Base64;
@@ -25,7 +26,7 @@ import java.util.Map;
  */
 public class WebOCR {
 	// OCR webapi 接口地址
-	private static final String WEBOCR_URL = "http://webapi.xfyun.cn/v1/service/v1/ocr/general";
+		private static final String WEBOCR_URL = "http://webapi.xfyun.cn/v1/service/v1/ocr/general";
 	// 应用ID
 	private static final String APPID = "5fc09733";
 	// 接口密钥

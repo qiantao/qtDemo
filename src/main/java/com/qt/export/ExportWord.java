@@ -2,7 +2,6 @@ package com.qt.export;
 
 import cn.hutool.json.JSONUtil;
 import com.google.common.collect.Lists;
-import com.qt.ExportDBEntity;
 import com.qt.jdbc.H3Dao;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTblPr;

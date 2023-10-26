@@ -1,7 +1,6 @@
 package com.qt.jdbc;
 
-import com.google.common.collect.Lists;
-import com.qt.ExportDBEntity;
+import com.qt.export.ExportDBEntity;
 import com.qt.util.StringUtil;
 
 import java.sql.PreparedStatement;
