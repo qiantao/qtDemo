@@ -1,5 +1,6 @@
 package com.qt.hcloud;
 
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -24,7 +25,7 @@ public class PoiExcel2k7Helper extends PoiExcelHelper {
         ArrayList<String> sheetList = new ArrayList<String>(0);
         try {
             XSSFWorkbook wb = new XSSFWorkbook(new FileInputStream(filePath));
-            Iterator<XSSFSheet> iterator = wb.iterator();
+            Iterator<Sheet> iterator = wb.iterator();
             while (iterator.hasNext()) {
                 sheetList.add(iterator.next().getSheetName());
             }

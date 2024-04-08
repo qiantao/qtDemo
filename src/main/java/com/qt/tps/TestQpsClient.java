@@ -1,6 +1,7 @@
 package com.qt.tps;
 
 
+import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.atomic.LongAdder;
@@ -62,48 +63,30 @@ public class TestQpsClient {
 
         @Override
         public void run() {
-//            try {
-//                cyclicBarrier.await();
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            } catch (BrokenBarrierException e) {
-//                e.printStackTrace();
-//            }
-//
-//            while ( !isFinish ) {
-//                long startTime = System.currentTimeMillis();
-//
-//                User user = null;
-//                TTransport transport = null;
-//                try {
-//                    TSocket socket = new TSocket("localhost", 4567);
-//                    transport = new TFastFramedTransport(socket);
-//                    transport.open();
-//                    TProtocol tProtocol = new TCompactProtocol(transport);
-//                    ThriftTest.Client testClient = new ThriftTest.Client(tProtocol);
-//
-//                    user = testClient.getUser(2);
-//                } catch (Exception e) {
-//                    user = null;
-//                    e.printStackTrace();
-//                } finally {
-//                    if (transport != null && transport.isOpen()) {
-//                        transport.close();
-//                    }
-//                }
-//
-//                long endTime = System.currentTimeMillis();
-//                System.out.println("线程" + i + "调用结果：" + user);
-//                reponseTimeSum.add(endTime - startTime);
-//
-//                if (user != null) {
-//                    successCount.increment();
-//                } else {
-//                    failCount.increment();
-//                }
-//            }
-//
-//            countDownLatch.countDown();
+            try {
+                cyclicBarrier.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (BrokenBarrierException e) {
+                e.printStackTrace();
+            }
+
+            while ( !isFinish ) {
+                long startTime = System.currentTimeMillis();
+
+
+                long endTime = System.currentTimeMillis();
+                System.out.println("线程" + i + "调用结果：" );
+                reponseTimeSum.add(endTime - startTime);
+
+                if ( true) {
+                    successCount.increment();
+                } else {
+                    failCount.increment();
+                }
+            }
+
+            countDownLatch.countDown();
         }
     }
 

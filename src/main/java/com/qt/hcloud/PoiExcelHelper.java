@@ -1,6 +1,7 @@
 package com.qt.hcloud;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.ss.usermodel.Cell;
@@ -192,7 +193,7 @@ public abstract class PoiExcelHelper {
         }
         String cellValue = "";
         switch (cell.getCellType()) {
-            case HSSFCell.CELL_TYPE_NUMERIC:
+            case NUMERIC:
                 if (HSSFDateUtil.isCellDateFormatted(cell)) {
                     SimpleDateFormat simpleDateFormat = null;
                     short dataFormat = cell.getCellStyle().getDataFormat();
@@ -214,10 +215,10 @@ public abstract class PoiExcelHelper {
                     cellValue = format.format(value);
                 }
                 break;
-            case HSSFCell.CELL_TYPE_STRING:
+            case STRING:
                 cellValue = cell.getStringCellValue();
                 break;
-            case HSSFCell.CELL_TYPE_BLANK:
+            case BLANK:
                 cellValue = "";
         }
         String value = cellValue;

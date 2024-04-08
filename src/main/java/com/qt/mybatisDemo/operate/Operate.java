@@ -34,15 +34,9 @@ public class Operate {
             String xmlPath = targetFilePath +"src/main/resources/mapper/";
             String entityPoPath = targetFilePath +"src/main/java/"+basePath+h3module+P+(StringUtil.isNullTrim(module)?"":(module + P))+"domain/";
             String entityResultPath = targetFilePath +"src/main/java/"+basePath+h3module+P+(StringUtil.isNullTrim(module)?"":(module + P))+"domain/result/";
-//            String entityPoPath = targetFilePath +"src/main/java/"+basePath+h3module+P+(StringUtil.isNullTrim(module)?"":(module + P))+"entity/po/";
             String daoPath = targetFilePath +"src/main/java/"+basePath+h3module+P+(StringUtil.isNullTrim(module)?"":(module + P))+"mapper/";
             String serviceFilePath = targetFilePath +"src/main/java/"+basePath+h3module+P+(StringUtil.isNullTrim(module)?"":(module + P))+"service/";
             String serviceImplFilePath = targetFilePath +"src/main/java/"+basePath+h3module+P+(StringUtil.isNullTrim(module)?"":(module + P))+"service"+P+"impl/";
-            String managerFilePath = targetFilePath +"src/main/java/"+basePath+h3module+P+(StringUtil.isNullTrim(module)?"":(module + P))+"check/";
-            String controllerFilePath = targetFilePath +"src/main/java/"+basePath+h3module+P+(StringUtil.isNullTrim(module)?"":(module + P))+"controller/";
-            String utilFilePath = targetFilePath +"src/main/java/"+basePath+h3module+P+"common/util/";
-            String groupFilePath = targetFilePath +"src/main/java/"+basePath+h3module+P+(StringUtil.isNullTrim(module)?"":(module + P))+"domain/group/";
-            String voFilePath = targetFilePath +"src/main/java/"+basePath+h3module+P+(StringUtil.isNullTrim(module)?"":(module + P))+"domain/vo/";
 
             List<String> tableNames = sourceEntity.getTableNames();
 

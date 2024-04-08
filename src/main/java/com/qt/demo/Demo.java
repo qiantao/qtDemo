@@ -1,12 +1,8 @@
 package com.qt.demo;
 
 import com.qt.util.TableColumn;
-import com.sun.istack.internal.NotNull;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
@@ -259,7 +255,7 @@ public class Demo {
         // 返回字符串类型的值
         if(hssfCell==null)return "";
 
-        hssfCell.setCellType(Cell.CELL_TYPE_STRING);
+        hssfCell.setCellType(CellType.STRING);
         String value = hssfCell.getStringCellValue().trim();
         if (value.startsWith("`")){
             value = value.replaceAll("`","");

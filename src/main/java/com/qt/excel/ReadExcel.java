@@ -1,19 +1,10 @@
 package com.qt.excel;
 
-import com.qt.demo.Demo;
-import com.qt.util.StringUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 /**
  * @ClassName:
@@ -23,31 +14,49 @@ import java.io.InputStream;
  * @version: V1.0
  */
 public class ReadExcel {
-    public static void main(String[] args) {
-        Workbook hssfWorkbook = getWorkBook("/Users/qiantao/Desktop/副本门禁人员编号对应表.xlsx");
-        Sheet hssfSheet = hssfWorkbook.getSheetAt(0);
+    public static void main(String[] args){
+        InputStream is = null;
+        FileOutputStream fos = null;
 
-        int maxRow = hssfSheet.getLastRowNum();
+        String filePath = "/Users/qiantao/Desktop/11.xlsx";
+        try {
+            File f = new File(filePath);
+            is = new FileInputStream(f);
+            Workbook hssfWorkbook = new XSSFWorkbook(is);
+            Sheet hssfSheet = hssfWorkbook.getSheetAt(0);
+            int maxRow = hssfSheet.getLastRowNum();
 
-        StringBuffer buf = new StringBuffer("[");
-        for (int i = 0; i <= maxRow; i++) {
-            if(i==0) continue;
-            Row hssfRow = hssfSheet.getRow(i);
-            if(hssfRow == null) continue;
-            String personName = getValue(hssfRow.getCell(1));
-            String tscName = getValue(hssfRow.getCell(2));
-            if(StringUtil.isNullTrim(personName)){
-                continue;
+            if(is != null) is .close();
+            fos = new FileOutputStream(filePath);
+
+            //追加内容
+            Row row = hssfSheet.createRow(maxRow+1);
+            Cell cell = row.createCell(0);
+            cell.setCellType(CellType.STRING);
+            cell.setCellValue("aaaa");
+            Cell cell1 = row.createCell(1);
+            cell1.setCellType(CellType.STRING);
+            cell1.setCellValue("aaaa");
+
+            hssfWorkbook.write(fos);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(is != null) {
+                try {
+                    is .close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
-            buf.append("\n    {\n" +
-                    "    \"personName\":\""+personName+"\",\n" +
-                    "    \"tscName\":\""+tscName+"\"\n" +
-                    "    }").append(",");
+            if(fos != null) {
+                try {
+                    fos .close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
-        buf.setLength(buf.length()-1);
-        buf.append("\n]");
-        System.out.println(buf.toString());
-        Demo.StringToFile("/Users/qiantao/Desktop/json.txt",buf.toString());
     }
 
     public static void buildStr(Row row,StringBuffer buf,StringBuffer buf1){
@@ -59,7 +68,7 @@ public class ReadExcel {
         // 返回字符串类型的值
         if(hssfCell==null)return "";
 
-        hssfCell.setCellType(Cell.CELL_TYPE_STRING);
+        hssfCell.setCellType(CellType.STRING);
         return hssfCell.getStringCellValue().trim();
     }
     /**

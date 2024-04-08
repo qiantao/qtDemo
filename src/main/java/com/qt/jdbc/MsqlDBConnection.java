@@ -9,14 +9,10 @@ import java.sql.*;
  */
 public class MsqlDBConnection {
     private static String USERNAMR = "root";
-//    private static String USERNAMR = "root";
-//    private static String PASSWORD = "qiantao2114";
-    private static String PASSWORD = "Perfma888.";
+    private static String PASSWORD = "qiantao2114";
 //    private static String DRVIER = "com.mysql.jdbc.Driver";
     private static String DRVIER = "com.mysql.cj.jdbc.Driver";
-//    private static String URL = "jdbc:mysql://127.0.0.1:3306/mdl";
-
-    private static String URL = "jdbc:mysql://10.10.221.21:3306/tocean";
+    private static String URL = "jdbc:mysql://127.0.0.1:3306/mdl";
     protected static Connection con = null;
 
     /**
